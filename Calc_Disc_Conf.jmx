@@ -1,0 +1,1953 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="3.2" jmeter="3.3 r1808647">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Cards" enabled="true">
+        <stringProp name="delimiter">;</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="filename">C:\Users\v.isaychenko\Desktop\jmeter stuff\CardEmissionMaster.csv</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">CardNumber</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="LoyaltyPrograms" enabled="true">
+        <stringProp name="delimiter">;</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="filename">C:\Users\v.isaychenko\Desktop\jmeter stuff\ListOfLP.csv</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">LP</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="Authorization " enabled="true">
+        <collectionProp name="AuthManager.auth_list">
+          <elementProp name="" elementType="Authorization">
+            <stringProp name="Authorization.url">http://master.iis.local/ExternalSystem/XmlExchange/Test/TEST198_32/</stringProp>
+            <stringProp name="Authorization.username">TEST198_32</stringProp>
+            <stringProp name="Authorization.password">111111</stringProp>
+            <stringProp name="Authorization.domain"></stringProp>
+            <stringProp name="Authorization.realm"></stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Authorization">
+            <stringProp name="Authorization.url">http://rc.iis.local/ExternalSystem/XmlExchange/Test/TEST198_32/</stringProp>
+            <stringProp name="Authorization.username">TEST198_32</stringProp>
+            <stringProp name="Authorization.password">111111</stringProp>
+            <stringProp name="Authorization.domain"></stringProp>
+            <stringProp name="Authorization.realm"></stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Authorization">
+            <stringProp name="Authorization.url">http://feature-5606.iis.local/ExternalSystem/XmlExchange/Test/TEST198_32/</stringProp>
+            <stringProp name="Authorization.username">TEST198_32</stringProp>
+            <stringProp name="Authorization.password">111111</stringProp>
+            <stringProp name="Authorization.domain"></stringProp>
+            <stringProp name="Authorization.realm"></stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Authorization">
+            <stringProp name="Authorization.url">https://ext-megafarm-stg.loytech.net:23443/XmlExchange/MEGAFARM/M00066601/</stringProp>
+            <stringProp name="Authorization.username">M00066601</stringProp>
+            <stringProp name="Authorization.password">777777</stringProp>
+            <stringProp name="Authorization.domain"></stringProp>
+            <stringProp name="Authorization.realm"></stringProp>
+          </elementProp>
+        </collectionProp>
+      </AuthManager>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="goodsInCheque" elementType="Argument">
+            <stringProp name="Argument.name">goodsInCheque</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">from 1 to ${positionInCatalog}</stringProp>
+          </elementProp>
+          <elementProp name="positionsInCatalog" elementType="Argument">
+            <stringProp name="Argument.name">positionsInCatalog</stringProp>
+            <stringProp name="Argument.value">160</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">see in cvs file </stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="OperationID" enabled="true">
+        <stringProp name="filename"></stringProp>
+        <stringProp name="parameters"></stringProp>
+        <boolProp name="resetInterpreter">false</boolProp>
+        <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef&quot;;
+int string_length = 12;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;OperationID&quot;,randomstring);
+
+</stringProp>
+      </BeanShellPreProcessor>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group 3.2" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1508734802000</longProp>
+        <longProp name="ThreadGroup.end_time">1508734802000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">${goodsInCheque}</stringProp>
+        </LoopController>
+        <hashTree>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Catalog" enabled="true">
+            <stringProp name="delimiter">;;</stringProp>
+            <stringProp name="fileEncoding"></stringProp>
+            <stringProp name="filename">C:\Users\v.isaychenko\Desktop\jmeter stuff\JmeterCatalog.csv</stringProp>
+            <boolProp name="ignoreFirstLine">false</boolProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <stringProp name="shareMode">shareMode.all</stringProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="variableNames">GoodsId,GoodsName</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
+            <stringProp name="CounterConfig.start">1</stringProp>
+            <stringProp name="CounterConfig.end">${goodsInCheque}</stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">Counter</stringProp>
+            <stringProp name="CounterConfig.format"></stringProp>
+            <boolProp name="CounterConfig.per_user">true</boolProp>
+            <boolProp name="CounterConfig.reset_on_tg_iteration">true</boolProp>
+          </CounterConfig>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Connector" enabled="true">
+            <stringProp name="BeanShellSampler.query">String postfix = vars.get(&quot;Counter&quot;);
+String valueId = vars.get(&quot;GoodsId&quot;);
+String valueName = vars.get(&quot;GoodsName&quot;);
+vars.put(&quot;goodsId&quot; + postfix, valueId);
+vars.put(&quot;goodsName&quot; + postfix, valueName);</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="&lt;Calculates&gt; Card Number" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;XMLRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&#xd;
+	&lt;Version&gt;3.2&lt;/Version&gt;&#xd;
+&#xd;
+			&lt;Calculates&gt;&#xd;
+		&lt;CalculateRequest OperationID=&quot;${OperationID}&quot; OperationDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot; PurchaseID=&quot;${PurchaseID}&quot;&gt;&#xd;
+			&lt;Cheque ChequeNumber=&quot;${ChequeNumber}&quot;  ChequeDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot;&gt;&#xd;
+&#xd;
+&#xd;
+${ChequeLine}&#xd;
+&#xd;
+				&#xd;
+			&lt;/Cheque&gt;&#xd;
+			&#xd;
+			&lt;Card Number=&quot;9070014402200015&quot;/&gt;&#xd;
+			&#xd;
+		&lt;/CalculateRequest&gt;&#xd;
+		&lt;/Calculates&gt;&#xd;
+		&#xd;
+&lt;/XMLRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">http://defect-15965.iis.local/ExternalSystem/XmlExchange/Test/TEST198_32/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeLine" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+String cheque = new String();
+
+for (int i = 1; i &lt;= ${goodsInCheque}; i++) 
+{
+Random randomGenerator = new Random();
+
+double preAQ = randomGenerator.nextInt(1000);
+double amount = 50;//preAQ/4;
+double quantity = preAQ/50;
+//double correction = preAQ/100;
+//+&quot; Correction=\&quot;-&quot;+correction.toString()+&quot;\&quot;&quot;
+
+double preQuantity = randomGenerator.nextInt(100000);
+
+cheque += &quot;&lt;ChequeLine PosID=\&quot;&quot;+i.toString()+&quot;\&quot;&quot;+&quot; Name=\&quot;&quot;+vars.get(&quot;goodsName&quot;+i.toString())+&quot;\&quot;&quot;+&quot; GoodsId=\&quot;&quot;+vars.get(&quot;goodsId&quot;+i.toString())+&quot;\&quot;&quot;+&quot; Price=\&quot;100\&quot;&quot;+&quot; Amount=\&quot;&quot;+amount.toString()+&quot;\&quot; Quantity=\&quot;&quot;+quantity.toString()+&quot;\&quot;/&gt;\r\n\r\n&quot;;
+}
+
+vars.put(&quot;ChequeLine&quot;, cheque);
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="PurchaseID" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef&quot;;
+int string_length = 12;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;PurchaseID&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Amount" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int leftPart = 3;
+int rightPart = 2;
+randomLeft=&quot;&quot;;
+randomRight=&quot;&quot;;
+
+for (int i=0; i &lt; leftPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomLeft += chars.substring(randomInt,randomInt+1);
+}
+
+for (int i=0; i &lt; rightPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomRight += chars.substring(randomInt,randomInt+1);
+}
+vars.put(&quot;Amount&quot;,randomLeft.toString()+&quot;.&quot;+randomRight.toString());
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Quantity" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int leftPart = 2;
+int rightPart = 3;
+randomLeft=&quot;&quot;;
+randomRight=&quot;&quot;;
+String value = new String();
+
+for (int i=0; i &lt; leftPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomLeft += chars.substring(randomInt,randomInt+1);
+}
+
+for (int i=0; i &lt; rightPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomRight += chars.substring(randomInt,randomInt+1);
+}
+value = randomLeft.toString()+&quot;.&quot;+randomRight.toString();
+vars.put(&quot;Quantity&quot;,value);
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeNumber" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int string_length = 8;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;ChequeNumber&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="ErrorCode" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">ErrorCode</stringProp>
+            <stringProp name="RegexExtractor.regex">ErrorCode=&quot;(.+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">none</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="AvailableBonusAmount" enabled="false">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">AvailableBonusAmount</stringProp>
+            <stringProp name="RegexExtractor.regex">AvailableBonusAmount=&quot;(.+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">none</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="&lt;Calculates&gt; Identifier Type=&quot;Auto&quot; + LoyaltyProgram" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;XMLRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&#xd;
+	&lt;Version&gt;3.2&lt;/Version&gt;&#xd;
+&#xd;
+			&lt;Calculates&gt;&#xd;
+		&lt;CalculateRequest OperationID=&quot;${OperationID}&quot; OperationDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot; PurchaseID=&quot;${PurchaseID}&quot;&gt;&#xd;
+			&lt;Cheque ChequeNumber=&quot;${ChequeNumber}&quot;  ChequeDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot;&gt;&#xd;
+&#xd;
+&#xd;
+${ChequeLine}&#xd;
+&#xd;
+				&#xd;
+			&lt;/Cheque&gt;&#xd;
+&#xd;
+			&lt;Identifier Type=&quot;Auto&quot; Value=&quot;${CardNumber}&quot;&gt;&#xd;
+				&lt;LoyaltyProgram Name=&quot;${LP}&quot; /&gt;&#xd;
+			&lt;/Identifier&gt;&#xd;
+						&#xd;
+		&lt;/CalculateRequest&gt;&#xd;
+		&lt;/Calculates&gt;&#xd;
+		&#xd;
+&lt;/XMLRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">http://defect-15959.iis.local/ExternalSystem/XmlExchange/Test/TEST198_32/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeLine" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+String cheque = new String();
+
+for (int i = 1; i &lt;= ${goodsInCheque}; i++) 
+{
+Random randomGenerator = new Random();
+
+double preAQ = randomGenerator.nextInt(1000);
+double amount = preAQ/5;
+double quantity = preAQ/50;
+//double correction = preAQ/100;
+//+&quot; Correction=\&quot;-&quot;+correction.toString()+&quot;\&quot;&quot;
+
+double preQuantity = randomGenerator.nextInt(100000);
+
+cheque += &quot;&lt;ChequeLine PosID=\&quot;&quot;+i.toString()+&quot;\&quot;&quot;+&quot; Name=\&quot;&quot;+vars.get(&quot;goodsName&quot;+i.toString())+&quot;\&quot;&quot;+&quot; GoodsId=\&quot;&quot;+vars.get(&quot;goodsId&quot;+i.toString())+&quot;\&quot;&quot;+&quot; Price=\&quot;100\&quot;&quot;+&quot; Amount=\&quot;&quot;+amount.toString()+&quot;\&quot; Quantity=\&quot;&quot;+quantity.toString()+&quot;\&quot;/&gt;\r\n\r\n&quot;;
+}
+
+vars.put(&quot;ChequeLine&quot;, cheque);
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="PurchaseID" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef&quot;;
+int string_length = 12;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;PurchaseID&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Amount" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int leftPart = 3;
+int rightPart = 2;
+randomLeft=&quot;&quot;;
+randomRight=&quot;&quot;;
+
+for (int i=0; i &lt; leftPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomLeft += chars.substring(randomInt,randomInt+1);
+}
+
+for (int i=0; i &lt; rightPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomRight += chars.substring(randomInt,randomInt+1);
+}
+vars.put(&quot;Amount&quot;,randomLeft.toString()+&quot;.&quot;+randomRight.toString());
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Quantity" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int leftPart = 2;
+int rightPart = 3;
+randomLeft=&quot;&quot;;
+randomRight=&quot;&quot;;
+String value = new String();
+
+for (int i=0; i &lt; leftPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomLeft += chars.substring(randomInt,randomInt+1);
+}
+
+for (int i=0; i &lt; rightPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomRight += chars.substring(randomInt,randomInt+1);
+}
+value = randomLeft.toString()+&quot;.&quot;+randomRight.toString();
+vars.put(&quot;Quantity&quot;,value);
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeNumber" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int string_length = 8;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;ChequeNumber&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="ErrorCode" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">ErrorCode</stringProp>
+            <stringProp name="RegexExtractor.regex">ErrorCode=&quot;(.+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">none</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="AvailableBonusAmount" enabled="false">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">AvailableBonusAmount</stringProp>
+            <stringProp name="RegexExtractor.regex">AvailableBonusAmount=&quot;(.+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">none</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="&lt;Payments&gt;" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;XMLRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&#xd;
+	&lt;Version&gt;3.2&lt;/Version&gt;&#xd;
+&#xd;
+			&lt;Payments&gt;&#xd;
+		&lt;PaymentRequest OperationID=&quot;${OperationID}&quot; OperationDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot; PurchaseID=&quot;${PurchaseID}&quot; Amount=&quot;11.25&quot;&gt;&#xd;
+			&lt;Cheque ChequeNumber=&quot;${ChequeNumber}&quot;  ChequeDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot;&gt;&#xd;
+&#xd;
+&#xd;
+${ChequeLine}&#xd;
+&#xd;
+				&#xd;
+			&lt;/Cheque&gt;&#xd;
+			&#xd;
+			&lt;Card Number=&quot;${CardNumber}&quot;/&gt;&#xd;
+			&#xd;
+		&lt;/PaymentRequest&gt;&#xd;
+		&lt;/Payments&gt;&#xd;
+		&#xd;
+&lt;/XMLRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">http://defect-14993.iis.local/ExternalSystem/XmlExchange/Test/TEST198_32/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeLine" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+String cheque = new String();
+
+for (int i = 1; i &lt;= ${goodsInCheque}; i++) 
+{
+Random randomGenerator = new Random();
+
+double preAQ = randomGenerator.nextInt(100000);
+double amount = preAQ/20;
+double quantity = preAQ/500;
+
+
+
+double preQuantity = randomGenerator.nextInt(100000);
+
+cheque += &quot;&lt;ChequeLine PosID=\&quot;&quot;+i.toString()+&quot;\&quot;&quot;+&quot; Name=\&quot;&quot;+vars.get(&quot;goodsName&quot;+i.toString())+&quot;\&quot;&quot;+&quot; GoodsId=\&quot;&quot;+vars.get(&quot;goodsId&quot;+i.toString())+&quot;\&quot;&quot;+&quot; Price=\&quot;100\&quot;&quot;+&quot; Amount=\&quot;&quot;+amount.toString()+&quot;\&quot; Quantity=\&quot;&quot;+quantity.toString()+&quot;\&quot;/&gt;\r\n\r\n&quot;;
+}
+
+vars.put(&quot;ChequeLine&quot;, cheque);
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="PurchaseID" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef&quot;;
+int string_length = 12;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;PurchaseID&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Amount" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int leftPart = 3;
+int rightPart = 2;
+randomLeft=&quot;&quot;;
+randomRight=&quot;&quot;;
+
+for (int i=0; i &lt; leftPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomLeft += chars.substring(randomInt,randomInt+1);
+}
+
+for (int i=0; i &lt; rightPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomRight += chars.substring(randomInt,randomInt+1);
+}
+vars.put(&quot;Amount&quot;,randomLeft.toString()+&quot;.&quot;+randomRight.toString());
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Quantity" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int leftPart = 2;
+int rightPart = 3;
+randomLeft=&quot;&quot;;
+randomRight=&quot;&quot;;
+String value = new String();
+
+for (int i=0; i &lt; leftPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomLeft += chars.substring(randomInt,randomInt+1);
+}
+
+for (int i=0; i &lt; rightPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomRight += chars.substring(randomInt,randomInt+1);
+}
+value = randomLeft.toString()+&quot;.&quot;+randomRight.toString();
+vars.put(&quot;Quantity&quot;,value);
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeNumber" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int string_length = 8;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;ChequeNumber&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">ErrorCode</stringProp>
+            <stringProp name="RegexExtractor.regex">ErrorCode=&quot;(.+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">none</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="&lt;Discounts&gt; Card Number" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;XMLRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&#xd;
+	&lt;Version&gt;3.2&lt;/Version&gt;&#xd;
+		&#xd;
+			&lt;Discounts&gt;&#xd;
+		&lt;DiscountRequest OperationID=&quot;${OperationID}&quot; OperationDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot; PurchaseID=&quot;${PurchaseID}&quot;&gt;&#xd;
+			&lt;Cheque ChequeNumber=&quot;${ChequeNumber}&quot;  ChequeDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot;&gt;&#xd;
+				&#xd;
+${ChequeLine}&#xd;
+				&#xd;
+			&lt;/Cheque&gt;&#xd;
+			&lt;Card Number=&quot;9070328101100031&quot;/&gt;&#xd;
+					&#xd;
+		&lt;/DiscountRequest&gt;&#xd;
+		&lt;/Discounts&gt;&#xd;
+&lt;/XMLRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">http://rc.iis.local/ExternalSystem/XmlExchange/Test/TEST059_32/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">ErrorCode</stringProp>
+            <stringProp name="RegexExtractor.regex">ErrorCode=&quot;(.+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">none</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="&lt;Discounts&gt; Identifier Type=&quot;Auto&quot; + LoyaltyProgram" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;XMLRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&#xd;
+	&lt;Version&gt;3.2&lt;/Version&gt;&#xd;
+		&#xd;
+			&lt;Discounts&gt;&#xd;
+		&lt;DiscountRequest OperationID=&quot;${OperationID}&quot; OperationDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot; PurchaseID=&quot;${PurchaseID}&quot;&gt;&#xd;
+			&lt;Cheque ChequeNumber=&quot;${ChequeNumber}&quot;  ChequeDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot;&gt;&#xd;
+				&#xd;
+${ChequeLine}&#xd;
+				&#xd;
+			&lt;/Cheque&gt;&#xd;
+&#xd;
+			&lt;Identifier Type=&quot;Auto&quot; Value=&quot;${CardNumber}&quot;&gt;&#xd;
+				&lt;LoyaltyProgram Name=&quot;${LP}&quot; /&gt;&#xd;
+			&lt;/Identifier&gt;&#xd;
+					&#xd;
+		&lt;/DiscountRequest&gt;&#xd;
+		&lt;/Discounts&gt;&#xd;
+&lt;/XMLRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">https://ext-megafarm-stg.loytech.net:23443/XmlExchange/MEGAFARM/M00066601/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">ErrorCode</stringProp>
+            <stringProp name="RegexExtractor.regex">ErrorCode=&quot;(.+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">none</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="&lt;Refund&gt; Card Number" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;XMLRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&#xd;
+	&lt;Version&gt;3.2&lt;/Version&gt;&#xd;
+		&#xd;
+			&lt;Refunds&gt;&#xd;
+				&lt;RefundRequest OperationID=&quot;${OperationID}&quot; OperationDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot; PurchaseID=&quot;${PurchaseID}&quot;&gt;&#xd;
+					&lt;Cheque ChequeNumber=&quot;${ChequeNumber}&quot;  ChequeDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot;&gt;&#xd;
+				&#xd;
+					${ChequeLine}&#xd;
+				&#xd;
+					&lt;/Cheque&gt;&#xd;
+			&#xd;
+					&lt;Card Number=&quot;${CardNumber}&quot;/&gt;&#xd;
+					&#xd;
+				&lt;/RefundRequest&gt;&#xd;
+			&lt;/Refunds&gt;&#xd;
+&lt;/XMLRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">http://defect-14993.iis.local/ExternalSystem/XmlExchange/Test/TEST198_32/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="PurchaseID" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef&quot;;
+int string_length = 20;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;PurchaseID&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Amount" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int leftPart = 3;
+int rightPart = 2;
+randomLeft=&quot;&quot;;
+randomRight=&quot;&quot;;
+
+for (int i=0; i &lt; leftPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomLeft += chars.substring(randomInt,randomInt+1);
+}
+
+for (int i=0; i &lt; rightPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomRight += chars.substring(randomInt,randomInt+1);
+}
+vars.put(&quot;Amount&quot;,randomLeft.toString()+&quot;.&quot;+randomRight.toString());
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Quantity" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int leftPart = 2;
+int rightPart = 3;
+randomLeft=&quot;&quot;;
+randomRight=&quot;&quot;;
+String value = new String();
+
+for (int i=0; i &lt; leftPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomLeft += chars.substring(randomInt,randomInt+1);
+}
+
+for (int i=0; i &lt; rightPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomRight += chars.substring(randomInt,randomInt+1);
+}
+value = randomLeft.toString()+&quot;.&quot;+randomRight.toString();
+vars.put(&quot;Quantity&quot;,value);
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeNumber" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int string_length = 8;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;ChequeNumber&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeLine" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+String cheque = new String();
+
+for (int i = 1; i &lt;= ${goodsInCheque}; i++) 
+{
+Random randomGenerator = new Random();
+
+double preAQ = randomGenerator.nextInt(1000);
+double amount = preAQ/4;
+double quantity = preAQ/50;
+//double correction = preAQ/100;
+//+&quot; Correction=\&quot;-&quot;+correction.toString()+&quot;\&quot;&quot;
+
+double preQuantity = randomGenerator.nextInt(100000);
+
+cheque += &quot;&lt;ChequeLine PosID=\&quot;&quot;+i.toString()+&quot;\&quot;&quot;+&quot; Name=\&quot;&quot;+vars.get(&quot;goodsName&quot;+i.toString())+&quot;\&quot;&quot;+&quot; GoodsId=\&quot;&quot;+vars.get(&quot;goodsId&quot;+i.toString())+&quot;\&quot;&quot;+&quot; Price=\&quot;100\&quot;&quot;+&quot; Amount=\&quot;&quot;+amount.toString()+&quot;\&quot; Quantity=\&quot;&quot;+quantity.toString()+&quot;\&quot;/&gt;\r\n\r\n&quot;;
+}
+
+vars.put(&quot;ChequeLine&quot;, cheque);
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="&lt;Refund&gt; Identifier Type=&quot;Auto&quot; + LoyaltyProgram" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;XMLRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&#xd;
+	&lt;Version&gt;3.2&lt;/Version&gt;&#xd;
+		&#xd;
+			&lt;Refunds&gt;&#xd;
+				&lt;RefundRequest OperationID=&quot;${OperationID}&quot; OperationDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot; PurchaseID=&quot;${PurchaseID}&quot;&gt;&#xd;
+					&lt;Cheque ChequeNumber=&quot;${ChequeNumber}&quot;  ChequeDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot;&gt;&#xd;
+				&#xd;
+					${ChequeLine}&#xd;
+				&#xd;
+					&lt;/Cheque&gt;&#xd;
+			&#xd;
+					&lt;Identifier Type=&quot;Auto&quot; Value=&quot;${CardNumber}&quot;&gt;&#xd;
+				&lt;LoyaltyProgram Name=&quot;Default&quot; /&gt;&#xd;
+			&lt;/Identifier&gt;&#xd;
+					&#xd;
+				&lt;/RefundRequest&gt;&#xd;
+			&lt;/Refunds&gt;&#xd;
+&lt;/XMLRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">http://feature-5606.iis.local/ExternalSystem/XmlExchange/Test/TEST198_32/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="PurchaseID" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef&quot;;
+int string_length = 20;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;PurchaseID&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Amount" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int leftPart = 3;
+int rightPart = 2;
+randomLeft=&quot;&quot;;
+randomRight=&quot;&quot;;
+
+for (int i=0; i &lt; leftPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomLeft += chars.substring(randomInt,randomInt+1);
+}
+
+for (int i=0; i &lt; rightPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomRight += chars.substring(randomInt,randomInt+1);
+}
+vars.put(&quot;Amount&quot;,randomLeft.toString()+&quot;.&quot;+randomRight.toString());
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Quantity" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int leftPart = 2;
+int rightPart = 3;
+randomLeft=&quot;&quot;;
+randomRight=&quot;&quot;;
+String value = new String();
+
+for (int i=0; i &lt; leftPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomLeft += chars.substring(randomInt,randomInt+1);
+}
+
+for (int i=0; i &lt; rightPart; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomRight += chars.substring(randomInt,randomInt+1);
+}
+value = randomLeft.toString()+&quot;.&quot;+randomRight.toString();
+vars.put(&quot;Quantity&quot;,value);
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeNumber" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int string_length = 8;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;ChequeNumber&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeLine" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+String cheque = new String();
+
+for (int i = 1; i &lt;= ${goodsInCheque}; i++) 
+{
+Random randomGenerator = new Random();
+
+double preAQ = randomGenerator.nextInt(1000);
+double amount = preAQ/4;
+double quantity = preAQ/50;
+//double correction = preAQ/100;
+//+&quot; Correction=\&quot;-&quot;+correction.toString()+&quot;\&quot;&quot;
+
+double preQuantity = randomGenerator.nextInt(100000);
+
+cheque += &quot;&lt;ChequeLine PosID=\&quot;&quot;+i.toString()+&quot;\&quot;&quot;+&quot; Name=\&quot;&quot;+vars.get(&quot;goodsName&quot;+i.toString())+&quot;\&quot;&quot;+&quot; GoodsId=\&quot;&quot;+vars.get(&quot;goodsId&quot;+i.toString())+&quot;\&quot;&quot;+&quot; Price=\&quot;100\&quot;&quot;+&quot; Amount=\&quot;&quot;+amount.toString()+&quot;\&quot; Quantity=\&quot;&quot;+quantity.toString()+&quot;\&quot;/&gt;\r\n\r\n&quot;;
+}
+
+vars.put(&quot;ChequeLine&quot;, cheque);
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="&lt;ConfirmPurchases&gt;" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;XMLRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&#xd;
+	&lt;Version&gt;3.2&lt;/Version&gt;&#xd;
+		&#xd;
+	&lt;ConfirmPurchases&gt;&#xd;
+	&#xd;
+		&lt;ConfirmPurchaseRequest OperationDate=&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ss)}.000&quot; OperationID=&quot;${OperationID}&quot; PurchaseID=&quot;${PurchaseID}&quot;/&gt;&#xd;
+		&#xd;
+    &lt;/ConfirmPurchases&gt;&#xd;
+	&#xd;
+&lt;/XMLRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">http://rc.iis.local/ExternalSystem/XmlExchange/Test/TEST059_32/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">ErrorCode</stringProp>
+            <stringProp name="RegexExtractor.regex">ErrorCode=&quot;(.+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">none</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If &quot;${ErrorCode}&quot;!=&quot;0&quot;" enabled="true">
+          <stringProp name="IfController.condition">&quot;${ErrorCode}&quot;!=&quot;0&quot;</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Fail!!!" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path"></stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If &quot;${AvailableBonusAmount}&quot;==&quot;42.00&quot;" enabled="false">
+          <stringProp name="IfController.condition">&quot;${AvailableBonusAmount}&quot;==&quot;42.00&quot;</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="42.00" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path"></stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If &quot;${AvailableBonusAmount}&quot;==&quot;41.99&quot;" enabled="false">
+          <stringProp name="IfController.condition">&quot;${AvailableBonusAmount}&quot;==&quot;41.99&quot;</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="41.99" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path"></stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If &quot;${AvailableBonusAmount}&quot;==&quot;49.50&quot;" enabled="false">
+          <stringProp name="IfController.condition">&quot;${AvailableBonusAmount}&quot;==&quot;49.50&quot;</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="49.50" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path"></stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If &quot;${AvailableBonusAmount}&quot;==&quot;49.49&quot;" enabled="false">
+          <stringProp name="IfController.condition">&quot;${AvailableBonusAmount}&quot;==&quot;49.49&quot;</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="49.49" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path"></stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion" enabled="false">
+          <stringProp name="BeanShellAssertion.query"></stringProp>
+          <stringProp name="BeanShellAssertion.filename"></stringProp>
+          <stringProp name="BeanShellAssertion.parameters"></stringProp>
+          <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+        </BeanShellAssertion>
+        <hashTree/>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
+          <stringProp name="ConstantTimer.delay">300</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Товары отличаются от прода + есть confirm 2.0" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1510221390000</longProp>
+        <longProp name="ThreadGroup.end_time">1510221390000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;XMLRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&#xd;
+	&lt;Version&gt;3.2&lt;/Version&gt;&#xd;
+&#xd;
+					&#xd;
+	    &lt;Discounts&gt;&#xd;
+		&lt;DiscountRequest OperationDate=&quot;2017-11-05T19:00:00&quot; OperationID=&quot;${OperationID1}&quot; PurchaseID=&quot;${PurchaseID}&quot; &gt;&#xd;
+			&lt;Cheque ChequeNumber=&quot;${ChequeNumber}&quot; ChequeDate=&quot;2017-11-05T19:00:00&quot;&gt;&#xd;
+        &#xd;
+				&lt;ChequeLine PosID=&quot;1&quot; Amount=&quot;10&quot; Name=&quot;сендвич1&quot; GoodsId=&quot;KHEN02&quot; Price=&quot;10&quot; Quantity=&quot;1&quot;/&gt;&#xd;
+				&lt;ChequeLine PosID=&quot;2&quot; Amount=&quot;20&quot; Name=&quot;сендвич2&quot; GoodsId=&quot;KARA012&quot; Price=&quot;10&quot; Quantity=&quot;1&quot;/&gt;			&#xd;
+				                        &#xd;
+			&lt;/Cheque&gt;&#xd;
+			&#xd;
+      &lt;Card Number=&quot;${CardNumber}&quot;/&gt;&#xd;
+				&#xd;
+		&#xd;
+			&#xd;
+		&lt;/DiscountRequest&gt;&#xd;
+  &lt;/Discounts&gt;&#xd;
+&#xd;
+&lt;ConfirmPurchases&gt;&#xd;
+		&lt;ConfirmPurchaseRequest OperationDate=&quot;2017-11-05T19:00:00&quot; OperationID=&quot;${OperationID2}&quot; PurchaseID=&quot;${PurchaseID}&quot;/&gt;&#xd;
+&lt;/ConfirmPurchases&gt;&#xd;
+		&#xd;
+&lt;/XMLRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">http://defect-10671.iis.dev/ExternalSystem/XmlExchange/Test/TEST198_32/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="OperationID1" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef_&quot;;
+int string_length = 20;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;OperationID1&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="OperationID2" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef&quot;;
+int string_length = 20;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;OperationID2&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="PurchaseID" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef&quot;;
+int string_length = 20;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;PurchaseID&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeNumber" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int string_length = 8;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;ChequeNumber&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
+            <stringProp name="ConstantTimer.delay"></stringProp>
+          </ConstantTimer>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;XMLRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&#xd;
+	&lt;Version&gt;3.2&lt;/Version&gt;&#xd;
+&#xd;
+					&#xd;
+	    &lt;Discounts&gt;&#xd;
+		&lt;DiscountRequest OperationDate=&quot;2017-11-05T19:00:00&quot; OperationID=&quot;${OperationID1}&quot; PurchaseID=&quot;${PurchaseID}&quot; &gt;&#xd;
+			&lt;Cheque ChequeNumber=&quot;${ChequeNumber}&quot; ChequeDate=&quot;2017-11-05T19:00:00&quot;&gt;&#xd;
+        &#xd;
+				&lt;ChequeLine PosID=&quot;1&quot; Amount=&quot;10&quot; Name=&quot;сендвич1&quot; GoodsId=&quot;KHEN02&quot; Price=&quot;10&quot; Quantity=&quot;1&quot;/&gt;&#xd;
+				&lt;ChequeLine PosID=&quot;2&quot; Amount=&quot;20&quot; Name=&quot;сендвич2&quot; GoodsId=&quot;KARA012&quot; Price=&quot;10&quot; Quantity=&quot;1&quot;/&gt;			&#xd;
+				                        &#xd;
+			&lt;/Cheque&gt;&#xd;
+			&#xd;
+      &lt;Card Number=&quot;${CardNumber}&quot;/&gt;&#xd;
+				&#xd;
+		&#xd;
+			&#xd;
+		&lt;/DiscountRequest&gt;&#xd;
+  &lt;/Discounts&gt;&#xd;
+&#xd;
+&lt;ConfirmPurchases&gt;&#xd;
+		&lt;ConfirmPurchaseRequest OperationDate=&quot;2017-11-05T19:00:00&quot; OperationID=&quot;${OperationID2}&quot; PurchaseID=&quot;${PurchaseID}&quot;/&gt;&#xd;
+&lt;/ConfirmPurchases&gt;&#xd;
+		&#xd;
+&lt;/XMLRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">http://defect-10671.iis.dev/ExternalSystem/XmlExchange/Test/TEST199_32/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="OperationID1" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef_&quot;;
+int string_length = 20;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;OperationID1&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="OperationID2" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef&quot;;
+int string_length = 20;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;OperationID2&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="PurchaseID" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef&quot;;
+int string_length = 20;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;PurchaseID&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ChequeNumber" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890&quot;;
+int string_length = 8;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;ChequeNumber&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
+            <stringProp name="ConstantTimer.delay"></stringProp>
+          </ConstantTimer>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+        <stringProp name="RespTimeGraph.interval">300</stringProp>
+        <boolProp name="RespTimeGraph.seriesselection">true</boolProp>
+        <stringProp name="RespTimeGraph.seriesselectionmatchlabel">HTTP Request</stringProp>
+        <intProp name="RespTimeGraph.linestrockwidth">3</intProp>
+        <intProp name="RespTimeGraph.lineshapepoint">4</intProp>
+      </ResultCollector>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Копия запроса с прода 2.0" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1510720754000</longProp>
+        <longProp name="ThreadGroup.end_time">1510720754000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xd;
+&lt;XMLRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&#xd;
+        &lt;Version&gt;2.0&lt;/Version&gt;&#xd;
+        &lt;Discounts&gt;&#xd;
+                &lt;DiscountRequest DeviceLogicalID=&quot;4&quot; OperationDate=&quot;2017-11-05T00:34:55&quot; OperationID=&quot;${OperationID1}&quot; PurchaseID=&quot;${OperationID1}&quot;&gt;&#xd;
+                        &lt;Card Number=&quot;${CardNumber}&quot;/&gt;&#xd;
+                        &lt;Cheque ChequeDate=&quot;2017-11-05T00:34:55&quot;&gt;&#xd;
+                                &lt;ChequeLine PosID=&quot;1&quot; Amount=&quot;50&quot; Name=&quot;Ай-твистер Чиз СЛ&quot; GoodsId=&quot;1394&quot; Price=&quot;50&quot; Quantity=&quot;1&quot;/&gt;&#xd;
+                                &lt;ChequeLine PosID=&quot;2&quot; Amount=&quot;50&quot; Name=&quot;Ай-твистер Чиз СЛ&quot; GoodsId=&quot;1394&quot; Price=&quot;50&quot; Quantity=&quot;1&quot;/&gt;&#xd;
+                                &lt;ChequeLine PosID=&quot;3&quot; Amount=&quot;50&quot; Name=&quot;Ай-твистер Чиз СЛ&quot; GoodsId=&quot;1394&quot; Price=&quot;50&quot; Quantity=&quot;1&quot;/&gt;&#xd;
+                                &lt;ChequeLine PosID=&quot;4&quot; Amount=&quot;150&quot; Name=&quot;Ай-Твистер Смоки томато&quot; GoodsId=&quot;2236&quot; Price=&quot;50&quot; Quantity=&quot;3&quot;/&gt;&#xd;
+                        &lt;/Cheque&gt;&#xd;
+                &lt;/DiscountRequest&gt;&#xd;
+        &lt;/Discounts&gt;&#xd;
+        &lt;Signatures/&gt;&#xd;
+&lt;/XMLRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">https://ext-kfc-stg.loytech.net:22443/XmlExchange/KFC/100546403/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="OperationID1" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.util.Random;
+
+chars = &quot;1234567890abcdef_&quot;;
+int string_length = 20;
+randomstring =&quot;&quot;;
+
+for (int i=0; i &lt; string_length; i++) {
+  Random randomGenerator = new Random();
+  int randomInt = randomGenerator.nextInt(chars.length());
+  randomstring += chars.substring(randomInt,randomInt+1);
+}
+print(randomstring);
+vars.put(&quot;OperationID1&quot;,randomstring);
+
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+            <stringProp name="ConstantTimer.delay"></stringProp>
+          </ConstantTimer>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="RespTimeGraph.interval">1000</stringProp>
+          <boolProp name="RespTimeGraph.seriesselection">true</boolProp>
+          <stringProp name="RespTimeGraph.seriesselectionmatchlabel">HTTP Request</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+    <WorkBench guiclass="WorkBenchGui" testclass="WorkBench" testname="WorkBench" enabled="true">
+      <boolProp name="WorkBench.save">true</boolProp>
+    </WorkBench>
+    <hashTree/>
+  </hashTree>
+</jmeterTestPlan>
