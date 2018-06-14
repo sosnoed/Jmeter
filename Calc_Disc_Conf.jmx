@@ -14,7 +14,7 @@
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Cards" enabled="true">
         <stringProp name="delimiter">;</stringProp>
         <stringProp name="fileEncoding"></stringProp>
-        <stringProp name="filename">C:\Users\v.isaychenko\Desktop\jmeter stuff\CardEmissionMaster.csv</stringProp>
+        <stringProp name="filename">C:\rep\Jmeter\JMeter\Jmeter\CardEmissionMaster.csv</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>
         <boolProp name="quotedData">false</boolProp>
         <boolProp name="recycle">true</boolProp>
@@ -26,7 +26,7 @@
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="LoyaltyPrograms" enabled="true">
         <stringProp name="delimiter">;</stringProp>
         <stringProp name="fileEncoding"></stringProp>
-        <stringProp name="filename">C:\Users\v.isaychenko\Desktop\jmeter stuff\ListOfLP.csv</stringProp>
+        <stringProp name="filename">C:\rep\Jmeter\JMeter\Jmeter\ListOfLP.csv</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>
         <boolProp name="quotedData">false</boolProp>
         <boolProp name="recycle">true</boolProp>
@@ -129,7 +129,7 @@ vars.put(&quot;OperationID&quot;,randomstring);
           <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Catalog" enabled="true">
             <stringProp name="delimiter">;;</stringProp>
             <stringProp name="fileEncoding"></stringProp>
-            <stringProp name="filename">C:\Users\v.isaychenko\Desktop\jmeter stuff\JmeterCatalog.csv</stringProp>
+            <stringProp name="filename">C:\rep\Jmeter\JMeter\Jmeter\JmeterCatalog.csv</stringProp>
             <boolProp name="ignoreFirstLine">false</boolProp>
             <boolProp name="quotedData">false</boolProp>
             <boolProp name="recycle">true</boolProp>
@@ -333,6 +333,15 @@ vars.put(&quot;ChequeNumber&quot;,randomstring);
             <stringProp name="RegexExtractor.useHeaders">false</stringProp>
             <stringProp name="RegexExtractor.refname">ErrorCode</stringProp>
             <stringProp name="RegexExtractor.regex">ErrorCode=&quot;(.+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">none</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Discount" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">Discount</stringProp>
+            <stringProp name="RegexExtractor.regex">Discount=&quot;(.+?)&quot;</stringProp>
             <stringProp name="RegexExtractor.template">$1$</stringProp>
             <stringProp name="RegexExtractor.default">none</stringProp>
             <stringProp name="RegexExtractor.match_number">1</stringProp>
